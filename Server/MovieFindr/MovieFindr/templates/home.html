@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="eng">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>Moviefindr</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link title="timeline-styles" rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+		<script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="{{ url_for('static', filename='d3.js') }}"></script>
+        <script src="{{ url_for('static', filename='d3.layout.cloud.js') }}"></script>
+        <script src="{{ url_for('static', filename='d3.wordcloud.js') }}"></script>
+        
+    </head>
+    <body>
+        
+        <div class="container">
+          <div class="header clearfix">
+           <h3 class="text-muted"><img src="{{ url_for('static', filename='logo.png') }}" alt="" /></h3>
+          </div>
+    
+          <div class="jumbotron" id="search" style="display: inherit">
+            <p class="lead">Search options:</p>
+              <form id="searchForm" action="">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1">Search query</span>
+                    <input type="text" class="form-control" placeholder="Search query" aria-describedby="sizing-addon1" id="query">
+                </div><label class="form-check-label"><input class="form-check-input" type="checkbox" id="match_phrase" value="match_phrase" name="match_phrase" style="margin-left: 15px;"> Match exact phrase</label><br/>
+                <br/>
+                
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1">Search for person involved</span>
+                    <input type="text" class="form-control" placeholder="Search for person involved" aria-describedby="sizing-addon1" id="person">
+                </div>
+                <br/>
+                
+                <p>Set year of release bounds</p>
+	                <div class="row" style="margin: 0px 20px;">
+					    <div class="col" style="margin-bottom: 20px;">
+					      <input type="text" class="form-control" placeholder="From" name="lowerDate" id="lowerDate">
+					    </div>
+					    <div class="col">
+					      <input type="text" class="form-control" placeholder="Until" name="upperDate" id="upperDate">
+					    </div>
+					</div><br/>
+
+                <p>Genre:</p>
+                <div id="genres"></div><br/><br/>
+                
+                
+                <p><input type="submit" id="submit" value="Search" class="btn btn-lg btn-success" role="button"><input type="reset" id="reset" value="Reset" class="btn btn-lg btn-success" role="button" style="margin-left: 20px;"></p>
+
+              </form>
+
+          </div>
+
+          <div id="movies"></div>
+          <br/>
+          <div id='timeline-embed' style="width: 100%; height: 600px"></div>
+          <br/>
+          <div id="wordcloud" style="width: 1200; margin: 0 auto;"></div>
+          
+        <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+    </body>
+</html>
